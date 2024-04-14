@@ -1,5 +1,5 @@
-from shop.Order import Order, print_order_details, generate_random_order
-from shop.Product import Product
+from shop.order import Order, print_order_details, generate_random_order
+from shop.product import Product
 
 if __name__ == "__main__":
     bread = Product(name="bread", category="food", price=4)

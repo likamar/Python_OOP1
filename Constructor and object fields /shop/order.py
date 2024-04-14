@@ -1,6 +1,6 @@
 import random
 
-from shop.Product import print_product_details, generate_random_product
+from shop.product import print_product_details, generate_random_product
 
 
 class Order:
@@ -28,7 +28,7 @@ def print_order_details(order: Order):
     for product in order.products:
         print_product_details(product)
     print(f"Total price: {order.total_price:.2f}")
-    print("###################")
+    print("#" * 20)
 
 
 def generate_random_order():
