@@ -1,4 +1,4 @@
-from shop.order import Order, print_order_details, generate_random_order
+from shop.order import Order, generate_random_order
 from shop.product import Product
 
 if __name__ == "__main__":
@@ -15,8 +15,9 @@ if __name__ == "__main__":
     order_2 = Order(customer_name="Adam", customer_surname="Nowak", products=products_list_2)
     order_3 = Order(customer_name="Dorota", customer_surname="Gajewska", products=products_list_3)
 
-    print_order_details(order_1)
-    print_order_details(order_2)
-    print_order_details(order_3)
+    order_1.print_details()
+    order_2.print_details()
+    order_3.print_details()
 
-    print_order_details(generate_random_order())
+    random_order = generate_random_order()
+    random_order.print_details()

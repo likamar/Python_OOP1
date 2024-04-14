@@ -7,13 +7,12 @@ class Product:
         self.category = category
         self.price = price
 
-
-def print_product_details(product: Product):
-    print()
-    print("\tProduct name: ", product.name)
-    print("\tCategory: ", product.category)
-    print(f"\tPrice: {product.price:.2f}")
-    print()
+    def print_details(self):
+        print()
+        print("\tProduct name: ", self.name)
+        print("\tCategory: ", self.category)
+        print(f"\tPrice: {self.price:.2f}")
+        print()
 
 
 def generate_random_product(product_number: int):

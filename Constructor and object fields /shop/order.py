@@ -1,6 +1,6 @@
 import random
 
-from shop.product import print_product_details, generate_random_product
+from shop.product import generate_random_product
 
 
 class Order:
@@ -12,6 +12,16 @@ class Order:
         self.products = products
         self.total_price = get_total_price(products)
 
+    def print_details(self):
+        print("Order details:\n")
+        print("Name: ", self.customer_name)
+        print("Surname: ", self.customer_surname)
+        print("Products:")
+        for product in self.products:
+            product.print_details()
+        print(f"Total price: {self.total_price:.2f}")
+        print("#" * 20)
+
 
 def get_total_price(products: list):
     total_price = 0
@@ -20,20 +30,10 @@ def get_total_price(products: list):
     return total_price
 
 
-def print_order_details(order: Order):
-    print("Order details:\n")
-    print("Name: ", order.customer_name)
-    print("Surname: ", order.customer_surname)
-    print("Products:")
-    for product in order.products:
-        print_product_details(product)
-    print(f"Total price: {order.total_price:.2f}")
-    print("#" * 20)
-
-
 def generate_random_order():
     products_list = []
-    for product_number in range(1, random.randint(1, 10)):
+    for product_number in range(1, random.randint(2, 10)):
+        print("Product number: ", product_number)
         product = generate_random_product(product_number)
         products_list.append(product)
     return Order("user_name", "user_surname", products_list)
