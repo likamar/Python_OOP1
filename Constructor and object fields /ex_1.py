@@ -1,5 +1,8 @@
+import random
+
+
 class Product:
-    def __init__(self, name, category, price):
+    def __init__(self, name, category=None, price: float = 0):
         self.name = name
         self.category = category
         self.price = price
@@ -51,8 +54,27 @@ def print_order_details(order: Order):
     print("Products:")
     for product in order.products:
         print_product_details(product)
-    print("Total price: ", order.total_price)
+    print(f"Total price: {order.total_price:.2f}")
     print("###################")
+
+
+def generate_random_order():
+    products_list = []
+    for product_number in range(1, random.randint(1, 10)):
+        product = generate_random_product(product_number)
+        products_list.append(product)
+    return Order("user_name", "user_surname", products_list)
+
+
+def generate_random_product(product_number: int):
+    random_name = "Product_" + str(product_number)
+    random_category = "Category_" + str(product_number)
+    random_price = generate_random_price()
+    return Product(random_name, random_category, random_price)
+
+
+def generate_random_price():
+    return random.uniform(1.99, 29.99)
 
 
 bread = Product(name="bread", category="food", price=4)
@@ -71,3 +93,5 @@ order_3 = Order(customer_name="Dorota", customer_surname="Gajewska", products=pr
 print_order_details(order_1)
 print_order_details(order_2)
 print_order_details(order_3)
+
+print_order_details(generate_random_order())
