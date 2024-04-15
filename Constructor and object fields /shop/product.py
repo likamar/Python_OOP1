@@ -8,11 +8,11 @@ class Product:
         self.price = price
 
     def print_details(self):
-        print()
+        # print()
         print("\tProduct name: ", self.name)
         print("\tCategory: ", self.category)
-        print(f"\tPrice: {self.price:.2f}")
-        print()
+        print(f"\tUnit price: {self.price:.2f}")
+        # print()
 
 
 def generate_random_product(product_number: int):

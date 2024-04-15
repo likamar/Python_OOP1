@@ -1,5 +1,7 @@
 from shop.order import Order, generate_random_order
 from shop.product import Product
+from shop.apple import Apple
+from shop.potato import Potato
 
 if __name__ == "__main__":
     bread = Product(name="bread", category="food", price=4)
@@ -21,3 +23,9 @@ if __name__ == "__main__":
 
     random_order = generate_random_order()
     random_order.print_details()
+
+    test_apple = Apple(species="Jonagold", size="L", price_kg=3.99)
+    test_potato = Potato(species="Bryza", size="M", price_kg=1.99)
+
+    print(f"Total price for 5 kq of apples: {test_apple.get_total_price(5):.2f}")
+    print(f"Total price for 10 kq of potatoes: {test_potato.get_total_price(10):.2f}")
