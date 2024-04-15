@@ -23,4 +23,6 @@ def generate_random_product(product_number: int):
 
 
 def generate_random_price():
-    return random.uniform(1.99, 29.99)
+    random_price = random.uniform(1.99, 29.99)
+    return round(random_price, 2)
+
