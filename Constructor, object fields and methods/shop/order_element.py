@@ -8,11 +8,14 @@ class OrderElement:
         self.product = product
         self.quantity = quantity
 
-    def print_order_element(self):
-        self.product.print_details()
-        print(f"\tQuantity: {self.quantity}")
-        print(f"\tPrice: {self.get_order_element_price():.2f}")
-        print("*" * 20)
+    def __str__(self):
+        return f"{self.product} | Quantity {self.quantity}"
+
+    # def print_order_element(self):
+    #     self.product.print_details()
+    #     print(f"\tQuantity: {self.quantity}")
+    #     print(f"\tPrice: {self.get_order_element_price():.2f}")
+    #     print("*" * 20)
 
     def get_order_element_price(self):
         return self.product.price * self.quantity

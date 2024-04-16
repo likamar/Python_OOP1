@@ -14,15 +14,25 @@ class Order:
         self.elements = order_elements
         self.total_price = self.get_total_price()
 
-    def print_details(self):
-        print("Order details:\n")
-        print("Name: ", self.customer_name)
-        print("Surname: ", self.customer_surname)
-        print("Products:")
+    def __str__(self):
+        mark_line = "*" * 20
+        client_details = f"Customer: {self.customer_name} {self.customer_surname}"
+        price_details = f"Total price: {self.total_price}"
+        products_details = f"Ordered Products:\n\n "
         for element in self.elements:
-            element.print_order_element()
-        print(f"Total price: {self.total_price:.2f}")
-        print("#" * 20)
+            products_details += f"\t{element}\n"
+        result = "\n".join([mark_line, client_details, price_details, products_details, mark_line])
+        return result
+
+    # def print_details(self):
+    #     print("Order details:\n")
+    #     print("Name: ", self.customer_name)
+    #     print("Surname: ", self.customer_surname)
+    #     print("Products:")
+    #     for element in self.elements:
+    #         element.print_order_element()
+    #     print(f"Total price: {self.total_price:.2f}")
+    #     print("#" * 20)
 
     def add_order_element(self, order_element: OrderElement):
         self.elements.append(order_element)

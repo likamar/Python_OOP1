@@ -7,12 +7,15 @@ class Product:
         self.category = category
         self.price = price
 
-    def print_details(self):
-        # print()
-        print("\tProduct name: ", self.name)
-        print("\tCategory: ", self.category)
-        print(f"\tUnit price: {self.price:.2f}")
-        # print()
+    def __str__(self):
+        return f"| Product: {self.name:<15} | Category: {self.category:<15} | Unit price: {self.price:<10.2f}"
+
+    # def print_details(self):
+    #     # print()
+    #     print("\tProduct name: ", self.name)
+    #     print("\tCategory: ", self.category)
+    #     print(f"\tUnit price: {self.price:.2f}")
+    #     # print()
 
 
 def generate_random_product(product_number: int):
@@ -26,3 +29,6 @@ def generate_random_price():
     random_price = random.uniform(1.99, 29.99)
     return round(random_price, 2)
 
+
+# test_product = Product(name="test_product", category="test_category", price=10)
+# print(test_product)

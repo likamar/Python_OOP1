@@ -23,12 +23,12 @@ if __name__ == "__main__":
     order_2 = Order(customer_name="Adam", customer_surname="Nowak", order_elements=order_list_2)
     order_3 = Order(customer_name="Dorota", customer_surname="Gajewska", order_elements=order_list_3)
 
-    order_1.print_details()
-    order_2.print_details()
-    order_3.print_details()
+    print(order_1)
+    print(order_2)
+    print(order_3)
 
     random_order = generate_random_order()
-    random_order.print_details()
+    print(random_order)
 
     test_apple = Apple(species="Jonagold", size="L", price_kg=3.99)
     test_potato = Potato(species="Bryza", size="M", price_kg=1.99)
