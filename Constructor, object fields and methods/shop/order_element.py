@@ -21,6 +21,8 @@ class OrderElement:
 def generate_random_order_element():
     product = generate_random_product(random.randint(1, 10))
     return OrderElement(product, quantity=random.randint(1, 6))
+
+
 # test_product = Product(name="test_product", category="test_category", price=10)
 # test_order_element = OrderElement(test_product, 5)
 # test_order_element.print_order_element()
