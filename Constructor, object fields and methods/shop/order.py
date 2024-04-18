@@ -1,8 +1,7 @@
 import random
 
 from shop.order_element import OrderElement, generate_random_order_element
-from shop.product import Product
-from shop.product import generate_random_product
+# from shop.product import Product
 
 
 class Order:
@@ -13,16 +12,37 @@ class Order:
             self.elements = []
         self.elements = order_elements
         self.total_price = self.get_total_price()
+        self.elements_number = len(self.elements)
 
     def __str__(self):
         mark_line = "*" * 20
         client_details = f"Customer: {self.customer_name} {self.customer_surname}"
+        elements_number = f"Order items: {self.elements_number}"
         price_details = f"Total price: {self.total_price}"
         products_details = f"Ordered Products:\n\n "
         for element in self.elements:
             products_details += f"\t{element}\n"
-        result = "\n".join([mark_line, client_details, price_details, products_details, mark_line])
+        result = "\n".join([mark_line, client_details, elements_number, price_details, products_details, mark_line])
         return result
+
+    def __len__(self):
+        return len(self.elements)
+
+    def __eq__(self, other: 'Order'):
+        if self.__class__ != other.__class__:
+            return NotImplemented
+
+        if self.elements_number != other.elements_number:
+            return False
+
+        if self.customer_name != other.customer_name or self.customer_surname != other.customer_surname:
+            return False
+
+        for order_element in self.elements:
+            if order_element not in other.elements:
+                return False
+
+        return True
 
     # def print_details(self):
     #     print("Order details:\n")

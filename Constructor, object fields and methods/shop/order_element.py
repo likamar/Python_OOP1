@@ -11,6 +11,11 @@ class OrderElement:
     def __str__(self):
         return f"{self.product} | Quantity {self.quantity}"
 
+    def __eq__(self, other: 'OrderElement'):
+        if self.__class__ != other.__class__:
+            return NotImplemented
+        return self.product == other.product and self.quantity == other.quantity
+
     # def print_order_element(self):
     #     self.product.print_details()
     #     print(f"\tQuantity: {self.quantity}")

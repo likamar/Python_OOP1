@@ -10,6 +10,13 @@ class Product:
     def __str__(self):
         return f"| Product: {self.name:<15} | Category: {self.category:<15} | Unit price: {self.price:<10.2f}"
 
+    def __eq__(self, other: 'Product'):
+        if self.__class__ != other.__class__:
+            return NotImplemented
+        return (self.name == other.name and
+                self.category == other.category and
+                self.price == other.price)
+
     # def print_details(self):
     #     # print()
     #     print("\tProduct name: ", self.name)
