@@ -33,5 +33,5 @@ if __name__ == "__main__":
     test_apple = Apple(species="Jonagold", size="L", price_kg=3.99)
     test_potato = Potato(species="Bryza", size="M", price_kg=1.99)
 
-    print(f"Total price for 5 kq of apples: {test_apple.get_total_price(5):.2f}")
-    print(f"Total price for 10 kq of potatoes: {test_potato.get_total_price(10):.2f}")
+    print(f"{test_apple} | Total price for 5 kg: {test_apple.get_total_price(5):.2f}")
+    print(f"{test_potato} | Total price for 10 kg: {test_potato.get_total_price(10):.2f}")
