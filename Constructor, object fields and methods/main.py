@@ -75,6 +75,12 @@ if __name__ == "__main__":
     print(f"order_6 = order_5: {order_6 == order_5}")  # False
     print(f"order_6 = order_7: {order_6 == order_7}")  # False
     print(f"order_1 = order_8: {order_1 == order_8}")  # True
+    print()
 
-    print(type(bread == 1))
-    print(type(NotImplemented))
+    # Why return False instead of NotImplemented ???
+    print(f"order_1 = bread: {order_1 == bread}")
+    print(order_1 == order_element_1)
+    print(bread == order_1)
+    print(type(order_1 == bread))
+    print(type(bread))
+    print(type(order_1))
