@@ -1,7 +1,7 @@
 import random
 
 from shop.order_element import OrderElement, generate_random_order_element
-# from shop.product import Product
+from shop.product import Product
 
 
 class Order:
@@ -9,24 +9,24 @@ class Order:
         self.customer_name = customer_name
         self.customer_surname = customer_surname
         if order_elements is None:
-            self.elements = []
-        self.elements = order_elements
-        self.total_price = self.get_total_price()
-        self.elements_number = len(self.elements)
+            self._elements = []
+        self._elements = order_elements
+        self.total_price = self._calculate_total_price()
+        self.elements_number = len(self._elements)
 
     def __str__(self):
         mark_line = "*" * 20
         client_details = f"Customer: {self.customer_name} {self.customer_surname}"
         elements_number = f"Order items: {self.elements_number}"
-        price_details = f"Total price: {self.total_price}"
+        price_details = f"Total price: {self.total_price:.2f}"
         products_details = f"Ordered Products:\n\n "
-        for element in self.elements:
+        for element in self._elements:
             products_details += f"\t{element}\n"
         result = "\n".join([mark_line, client_details, elements_number, price_details, products_details, mark_line])
         return result
 
     def __len__(self):
-        return len(self.elements)
+        return len(self._elements)
 
     def __eq__(self, other: 'Order'):
         if self.__class__ != other.__class__:
@@ -38,8 +38,8 @@ class Order:
         if self.customer_name != other.customer_name or self.customer_surname != other.customer_surname:
             return False
 
-        for order_element in self.elements:
-            if order_element not in other.elements:
+        for order_element in self._elements:
+            if order_element not in other._elements:
                 return False
 
         return True
@@ -55,13 +55,18 @@ class Order:
     #     print("#" * 20)
 
     def add_order_element(self, order_element: OrderElement):
-        self.elements.append(order_element)
+        self._elements.append(order_element)
 
-    def get_total_price(self) -> float:
+    def _calculate_total_price(self) -> float:
         total_price = 0
-        for order_element in self.elements:
+        for order_element in self._elements:
             total_price += order_element.get_order_element_price()
         return total_price
+
+    def add_product(self, product: Product, quantity: int):
+        new_element = OrderElement(product, quantity)
+        self._elements.append(new_element)
+        self.total_price = self._calculate_total_price()
 
 
 def generate_random_order() -> Order:
