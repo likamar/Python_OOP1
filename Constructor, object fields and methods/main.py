@@ -77,7 +77,6 @@ if __name__ == "__main__":
     print(f"order_1 = order_8: {order_1 == order_8}")  # True
     print()
 
-    # Why return False instead of NotImplemented ???
     print(f"order_1 = bread: {order_1 == bread}")
     print(order_1 == order_element_1)
     print(bread == order_1)
