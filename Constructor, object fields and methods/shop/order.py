@@ -13,7 +13,7 @@ class Order:
         if order_elements is None:
             self._elements = []
         if len(order_elements) > Order.MAX_ELEMENTS:
-            self._elements = order_elements[:20]
+            self._elements = order_elements[:Order.MAX_ELEMENTS]
         else:
             self._elements = order_elements
         self.total_price = self._calculate_total_price()
@@ -78,9 +78,9 @@ class Order:
             print("Maximum products limit reached!")
 
     @classmethod
-    def generate_random_order(cls) -> 'Order':
+    def generate_random_order(cls, order_elements_number) -> 'Order':
         elements_list: list = []
-        for random_int in range(1, random.randint(2, cls.MAX_ELEMENTS)):
+        for random_int in range(1, order_elements_number + 1):
             order_element = OrderElement.generate_random_order_element()
             elements_list.append(order_element)
         return Order("test_name", "test_surname", elements_list)

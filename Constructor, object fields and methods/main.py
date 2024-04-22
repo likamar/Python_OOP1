@@ -6,18 +6,18 @@ from shop.product import Product
 from shop.order import Order
 
 if __name__ == "__main__":
-    # bread = Product(name="bread", category="food", price=4)
-    # water = Product(name="water", category="drinks", price=3.5)
-    # shampoo = Product(name="shampoo", category="cosmetics", price=19.99)
-    # ham = Product(name="ham", category="food", price=6.99)
+    bread = Product(name="bread", category="food", price=4)
+    water = Product(name="water", category="drinks", price=3.5)
+    shampoo = Product(name="shampoo", category="cosmetics", price=19.99)
+    apple = Product(name="apple", category="fruits", price=6.99)
+
+    order_element_1 = OrderElement(bread, quantity=4)
+    order_element_2 = OrderElement(water, 12)
+    order_element_3 = OrderElement(shampoo, 3)
+    order_element_4 = OrderElement(apple, 2)
+    order_element_5 = OrderElement(bread, quantity=1)
     #
-    # order_element_1 = OrderElement(bread, quantity=4)
-    # order_element_2 = OrderElement(water, 12)
-    # order_element_3 = OrderElement(shampoo, 3)
-    # order_element_4 = OrderElement(ham, 2)
-    # order_element_5 = OrderElement(bread, quantity=1)
-    #
-    # order_list_1 = [order_element_1, order_element_2, order_element_3]
+    order_list_1 = [order_element_1, order_element_2, order_element_3, order_element_4]
     # order_list_2 = [order_element_2, order_element_3, order_element_4]
     # order_list_3 = [order_element_4, order_element_2, order_element_1]
     # order_list_4 = [order_element_1, order_element_2, order_element_3]
@@ -25,7 +25,7 @@ if __name__ == "__main__":
     # order_list_6 = [order_element_1, order_element_2, order_element_3, order_element_5]
     # order_list_7 = [order_element_2, order_element_3, order_element_1]
     #
-    # order_1 = Order(customer_name="Jan", customer_surname="Kowalski", order_elements=order_list_1)
+    order_1 = Order(customer_name="Jan", customer_surname="Kowalski", order_elements=order_list_1)
     # order_2 = Order(customer_name="Adam", customer_surname="Nowak", order_elements=order_list_2)
     # order_3 = Order(customer_name="Dorota", customer_surname="Gajewska", order_elements=order_list_3)
     # order_4 = Order(customer_name="Jan", customer_surname="Kowalski", order_elements=order_list_4)
@@ -37,8 +37,8 @@ if __name__ == "__main__":
     # print(order_1)
     # print(order_2)
     # print(order_3)
-
-    random_order = Order.generate_random_order()
+    print(order_1)
+    random_order = Order.generate_random_order(9)
     print(random_order)
     random_product = Product.generate_random_product(99)
     print(random_product)

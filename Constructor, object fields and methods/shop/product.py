@@ -8,7 +8,7 @@ class Product:
         self.price = price
 
     def __str__(self):
-        return f"| Product: {self.name:<15} | Category: {self.category:<15} | Unit price: {self.price:<10.2f}"
+        return f"| Product: {self.name:<10} | Category: {self.category:<12} | Unit price: {self.price:<8.2f}"
 
     def __eq__(self, other: 'Product'):
         if self.__class__ != other.__class__:
@@ -17,8 +17,8 @@ class Product:
                 self.category == other.category and
                 self.price == other.price)
 
-    @staticmethod
-    def generate_random_product(product_number: int) -> 'Product':
+    @classmethod
+    def generate_random_product(cls, product_number: int) -> 'Product':
         random_name = "Product_" + str(product_number)
         random_category = "Category_" + str(product_number)
         random_price = generate_random_price()
