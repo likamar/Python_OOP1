@@ -1,6 +1,6 @@
 import random
 
-from shop.product import Product, generate_random_product
+from shop.product import Product
 
 
 class OrderElement:
@@ -25,10 +25,10 @@ class OrderElement:
     def get_order_element_price(self):
         return self.product.price * self.quantity
 
-
-def generate_random_order_element():
-    product = generate_random_product(random.randint(1, 10))
-    return OrderElement(product, quantity=random.randint(1, 6))
+    @staticmethod
+    def generate_random_order_element():
+        product = Product.generate_random_product(random.randint(1, 10))
+        return OrderElement(product, quantity=random.randint(1, 6))
 
 
 # test_product = Product(name="test_product", category="test_category", price=10)

@@ -1,18 +1,23 @@
 import random
 
-from shop.order_element import OrderElement, generate_random_order_element
+from shop.order_element import OrderElement
 from shop.product import Product
 
 
 class Order:
+    MAX_ELEMENTS = 10
+
     def __init__(self, customer_name, customer_surname, order_elements: list = None):
         self.customer_name = customer_name
         self.customer_surname = customer_surname
         if order_elements is None:
             self._elements = []
-        self._elements = order_elements
+        if len(order_elements) > Order.MAX_ELEMENTS:
+            self._elements = order_elements[:20]
+        else:
+            self._elements = order_elements
         self.total_price = self._calculate_total_price()
-        self.elements_number = len(self._elements)
+        self.elements_number = len(self)
 
     def __str__(self):
         mark_line = "*" * 20
@@ -64,17 +69,21 @@ class Order:
         return total_price
 
     def add_product(self, product: Product, quantity: int):
-        new_element = OrderElement(product, quantity)
-        self._elements.append(new_element)
-        self.total_price = self._calculate_total_price()
+        if self.elements_number < Order.MAX_ELEMENTS:
+            new_element = OrderElement(product, quantity)
+            self._elements.append(new_element)
+            self.total_price = self._calculate_total_price()
+            self.elements_number = len(self)
+        else:
+            print("Maximum products limit reached!")
 
-
-def generate_random_order() -> Order:
-    elements_list: list = []
-    for random_int in range(1, random.randint(2, 6)):
-        order_element = generate_random_order_element()
-        elements_list.append(order_element)
-    return Order("test_name", "test_surname", elements_list)
+    @classmethod
+    def generate_random_order(cls) -> 'Order':
+        elements_list: list = []
+        for random_int in range(1, random.randint(2, cls.MAX_ELEMENTS)):
+            order_element = OrderElement.generate_random_order_element()
+            elements_list.append(order_element)
+        return Order("test_name", "test_surname", elements_list)
 
 
 # test_product = Product(name="test_product", category="test_category", price=10)

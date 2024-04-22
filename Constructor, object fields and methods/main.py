@@ -1,10 +1,9 @@
 from shop.apple import Apple
-from shop.order import Order, generate_random_order
+from shop.order import Order
 from shop.order_element import OrderElement
 from shop.potato import Potato
 from shop.product import Product
-from shop.order_element import generate_random_order_element
-from shop.product import generate_random_product
+from shop.order import Order
 
 if __name__ == "__main__":
     # bread = Product(name="bread", category="food", price=4)
@@ -39,14 +38,14 @@ if __name__ == "__main__":
     # print(order_2)
     # print(order_3)
 
-    random_order = generate_random_order()
+    random_order = Order.generate_random_order()
     print(random_order)
-    random_product = generate_random_product(99)
+    random_product = Product.generate_random_product(99)
     print(random_product)
     quantity = 3
     random_order.add_product(random_product, quantity)
     print(random_order)
-    random_order_element = generate_random_order_element()
+    random_order_element = OrderElement.generate_random_order_element()
     random_order.add_product(random_order_element.product, random_order_element.quantity)
     print(random_order)
 

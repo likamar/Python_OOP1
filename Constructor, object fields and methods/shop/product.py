@@ -17,6 +17,13 @@ class Product:
                 self.category == other.category and
                 self.price == other.price)
 
+    @staticmethod
+    def generate_random_product(product_number: int) -> 'Product':
+        random_name = "Product_" + str(product_number)
+        random_category = "Category_" + str(product_number)
+        random_price = generate_random_price()
+        return Product(random_name, random_category, random_price)
+
     # def print_details(self):
     #     # print()
     #     print("\tProduct name: ", self.name)
@@ -25,11 +32,7 @@ class Product:
     #     # print()
 
 
-def generate_random_product(product_number: int):
-    random_name = "Product_" + str(product_number)
-    random_category = "Category_" + str(product_number)
-    random_price = generate_random_price()
-    return Product(random_name, random_category, random_price)
+
 
 
 def generate_random_price():
