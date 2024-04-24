@@ -32,9 +32,6 @@ class Product:
     #     # print()
 
 
-
-
-
 def generate_random_price():
     random_price = random.uniform(1.99, 29.99)
     return round(random_price, 2)
