@@ -20,7 +20,7 @@ class Order:
         self.discount_policy = discount_policy
         self.price_before_discount = self._calculate_price_before_discount()
         self.total_price = self._calculate_total_price()
-        self.discount_value = self.price_before_discount - self.total_price
+        self.discount_value = self.calculate_discount_value()
         self.elements_number = len(self)
 
     def __str__(self):
@@ -84,11 +84,16 @@ class Order:
     def _calculate_total_price(self) -> float:
         return self.discount_policy(self._calculate_price_before_discount())
 
+    def calculate_discount_value(self):
+        return self.price_before_discount - self.total_price
+
     def add_product(self, product: Product, quantity: int):
         if self.elements_number < Order.MAX_ELEMENTS:
             new_element = OrderElement(product, quantity)
             self._elements.append(new_element)
+            self.price_before_discount = self._calculate_price_before_discount()
             self.total_price = self._calculate_total_price()
+            self.discount_value = self.calculate_discount_value()
             self.elements_number = len(self)
         else:
             print("Maximum products limit reached!")

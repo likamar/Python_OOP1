@@ -57,7 +57,7 @@ if __name__ == "__main__":
     # print(order_2)
     # print(order_3)
     print(order_1)
-    random_order = Order.generate_random_order(9)
+    random_order = Order.generate_random_order(9, discount_policy=DiscountPolicy.loyal_customer)
     print(random_order)
     random_product = Product.generate_random_product(99)
     print(random_product)
