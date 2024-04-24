@@ -1,5 +1,3 @@
-import random
-
 from shop.order_element import OrderElement
 from shop.product import Product
 

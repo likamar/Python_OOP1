@@ -1,9 +1,27 @@
+import random
+
 from shop.apple import Apple
 from shop.order import Order
 from shop.order_element import OrderElement
 from shop.potato import Potato
 from shop.product import Product
 from shop.order import Order
+
+
+def get_order_price(order: Order):
+    return order.total_price
+
+
+def generate_random_orders_sorted_by_price(number_of_orders):
+    orders = []
+    for _ in range(0, number_of_orders):
+        order_elements_number = random.randint(1, 5)
+        order = Order.generate_random_order(order_elements_number)
+        orders.append(order)
+    orders.sort(key=get_order_price)
+    for order in orders:
+        print(order)
+
 
 if __name__ == "__main__":
     bread = Product(name="bread", category="food", price=4)
@@ -48,6 +66,9 @@ if __name__ == "__main__":
     random_order_element = OrderElement.generate_random_order_element()
     random_order.add_product(random_order_element.product, random_order_element.quantity)
     print(random_order)
+
+    print("Random orders sorted by price:")
+    generate_random_orders_sorted_by_price(5)
 
     # test_apple = Apple(species="Jonagold", size="L", price_kg=3.99)
     # test_potato = Potato(species="Bryza", size="M", price_kg=1.99)
