@@ -24,18 +24,7 @@ class Product:
         random_price = generate_random_price()
         return Product(random_name, random_category, random_price)
 
-    # def print_details(self):
-    #     # print()
-    #     print("\tProduct name: ", self.name)
-    #     print("\tCategory: ", self.category)
-    #     print(f"\tUnit price: {self.price:.2f}")
-    #     # print()
-
 
 def generate_random_price():
     random_price = random.uniform(1.99, 29.99)
     return round(random_price, 2)
-
-
-# test_product = Product(name="test_product", category="test_category", price=10)
-# print(test_product)
