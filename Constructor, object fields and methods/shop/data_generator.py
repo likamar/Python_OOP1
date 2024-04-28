@@ -40,7 +40,3 @@ def generate_random_orders_sorted_by_price(number_of_orders):
     orders.sort(key=lambda order_to_sort: order_to_sort.total_price)
     for order in orders:
         print(order)
-
-
-print(generate_random_order(5, discount_policy=DiscountPolicy.loyal_customer))
-generate_random_orders_sorted_by_price(10)
