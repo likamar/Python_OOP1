@@ -26,7 +26,7 @@ def generate_random_order_element():
 def generate_order_elements(number_of_products=None):
     order_elements = []
     if number_of_products is None:
-        number_of_products = random.randint(1, 10)
+        number_of_products = random.randint(1, Order.MAX_ELEMENTS)
     for _ in range(0, number_of_products):
         order_elements.append(generate_random_order_element())
     return order_elements
