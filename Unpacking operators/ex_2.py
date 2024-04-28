@@ -11,4 +11,5 @@ def print_call_str(**kwargs):
     print(call_str)
 
 
-print_call_str(first_name="Marcin", surname="Lika", age=35, email="marcin@lika.com")
+if __name__ == "__main__":
+    print_call_str(first_name="Marcin", surname="Lika", age=35, email="marcin@lika.com")
