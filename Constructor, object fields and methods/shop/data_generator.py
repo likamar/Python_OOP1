@@ -20,14 +20,20 @@ def generate_random_product(product_number: int) -> 'Product':
 
 def generate_random_order_element():
     product = generate_random_product(random.randint(1, 10))
-    return OrderElement(product, quantity=random.randint(1, 6))
+    return OrderElement(product, quantity=random.randint(1, 10))
 
 
-def generate_random_order(order_elements_number, discount_policy=None) -> 'Order':
-    elements_list: list = []
-    for random_int in range(1, order_elements_number + 1):
-        order_element = generate_random_order_element()
-        elements_list.append(order_element)
+def generate_order_elements(number_of_products=None):
+    order_elements = []
+    if number_of_products is None:
+        number_of_products = random.randint(1, 10)
+    for _ in range(0, number_of_products):
+        order_elements.append(generate_random_order_element())
+    return order_elements
+
+
+def generate_random_order(number_of_products=None, discount_policy=None) -> 'Order':
+    elements_list = generate_order_elements(number_of_products)
     return Order("test_name", "test_surname", elements_list, discount_policy)
 
 
