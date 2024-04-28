@@ -87,12 +87,3 @@ class Order:
             self.elements_number = len(self)
         else:
             print("Maximum products limit reached!")
-
-    @classmethod
-    def generate_random_order(cls, order_elements_number, discount_policy=None) -> 'Order':
-        elements_list: list = []
-        for random_int in range(1, order_elements_number + 1):
-            order_element = OrderElement.generate_random_order_element()
-            elements_list.append(order_element)
-        return Order("test_name", "test_surname", elements_list, discount_policy)
-

@@ -8,15 +8,7 @@ def get_order_price(order: Order):
     return order.total_price
 
 
-def generate_random_orders_sorted_by_price(number_of_orders):
-    orders = []
-    for _ in range(0, number_of_orders):
-        order_elements_number = random.randint(1, 5)
-        order = Order.generate_random_order(order_elements_number, discount_policy=DiscountPolicy.christmas)
-        orders.append(order)
-    orders.sort(key=lambda order: order.total_price)
-    for order in orders:
-        print(order)
+
 
 
 if __name__ == "__main__":
