@@ -1,8 +1,8 @@
 import random
 
-from product import Product
-from tax_calculator import TaxCalculator
-from tax_rates import TaxRates
+from shop.product import Product
+from shop.tax_calculator import TaxCalculator
+from shop.tax_rates import TaxRates
 
 
 class OrderElement:

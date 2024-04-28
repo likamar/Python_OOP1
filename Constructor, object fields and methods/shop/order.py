@@ -1,6 +1,6 @@
-from order_element import OrderElement
-from product import Product
-from discount_policy import DiscountPolicy
+from shop.order_element import OrderElement
+from shop.product import Product
+from shop.discount_policy import DiscountPolicy
 
 
 class Order:
