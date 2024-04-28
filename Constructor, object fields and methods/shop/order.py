@@ -1,6 +1,6 @@
-from shop.order_element import OrderElement
-from shop.product import Product
-from shop.discount_policy import DiscountPolicy
+from order_element import OrderElement
+from product import Product
+from discount_policy import DiscountPolicy
 
 
 class Order:
@@ -62,16 +62,6 @@ class Order:
 
         return True
 
-    # def print_details(self):
-    #     print("Order details:\n")
-    #     print("Name: ", self.customer_name)
-    #     print("Surname: ", self.customer_surname)
-    #     print("Products:")
-    #     for element in self.elements:
-    #         element.print_order_element()
-    #     print(f"Total price: {self.total_price:.2f}")
-    #     print("#" * 20)
-
     def add_order_element(self, order_element: OrderElement):
         self._elements.append(order_element)
 
@@ -106,12 +96,3 @@ class Order:
             elements_list.append(order_element)
         return Order("test_name", "test_surname", elements_list, discount_policy)
 
-
-# test_product = Product(name="test_product", category="test_category", price=10)
-# order_elements = []
-# order_element_1 = OrderElement(test_product, 5)
-# order_element_2 = OrderElement(test_product, 2)
-# order_elements.append(order_element_1)
-# order_elements.append(order_element_2)
-# test_order = Order(customer_name="Jan", customer_surname="Kowalski", order_elements=order_elements)
-# test_order.print_details()
