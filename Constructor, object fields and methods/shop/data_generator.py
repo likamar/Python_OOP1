@@ -5,9 +5,14 @@ from shop.order import Order
 from shop.order_element import OrderElement
 from shop.product import Product
 
+MIN_ORDER_ELEMENT_QUANTITY = 1
+MAX_ORDER_ELEMENT_QUANTITY = 10
+MIN_PRODUCT_PRICE = 0.99
+MAX_PRODUCT_PRICE = 99.99
+
 
 def generate_random_price():
-    random_price = random.uniform(1.99, 29.99)
+    random_price = random.uniform(MIN_PRODUCT_PRICE, MAX_PRODUCT_PRICE)
     return round(random_price, 2)
 
 
@@ -20,7 +25,7 @@ def generate_random_product(product_number: int) -> 'Product':
 
 def generate_random_order_element():
     product = generate_random_product(random.randint(1, 10))
-    return OrderElement(product, quantity=random.randint(1, 10))
+    return OrderElement(product, quantity=random.randint(MIN_ORDER_ELEMENT_QUANTITY, MAX_ORDER_ELEMENT_QUANTITY))
 
 
 def generate_order_elements(number_of_products=None):
