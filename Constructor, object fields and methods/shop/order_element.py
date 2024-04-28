@@ -1,8 +1,8 @@
 import random
 
-from shop.product import Product
-from shop.tax_calculator import TaxCalculator
-from shop.tax_rates import TaxRates
+from product import Product
+from tax_calculator import TaxCalculator
+from tax_rates import TaxRates
 
 
 class OrderElement:
@@ -20,12 +20,6 @@ class OrderElement:
             return NotImplemented
         return self.product == other.product and self.quantity == other.quantity
 
-    # def print_order_element(self):
-    #     self.product.print_details()
-    #     print(f"\tQuantity: {self.quantity}")
-    #     print(f"\tPrice: {self.get_order_element_price():.2f}")
-    #     print("*" * 20)
-
     def get_order_element_price(self):
         return self.product.price * self.quantity
 
@@ -33,12 +27,3 @@ class OrderElement:
     def generate_random_order_element(cls):
         product = Product.generate_random_product(random.randint(1, 10))
         return OrderElement(product, quantity=random.randint(1, 6))
-
-
-# test_product = Product(name="test_product", category="test_category", price=10)
-# test_order_element = OrderElement(test_product, 5)
-# test_order_element.print_order_element()
-
-
-# random_order_element = generate_random_order_element()
-# random_order_element.print_order_element()
