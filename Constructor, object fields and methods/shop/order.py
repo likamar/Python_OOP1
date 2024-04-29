@@ -62,6 +62,20 @@ class Order:
 
         return True
 
+    @property
+    def elements(self):
+        return self._elements
+
+    @elements.setter
+    def elements(self, order_elements_list):
+        if len(order_elements_list) > Order.MAX_ELEMENTS:
+            self._elements = order_elements_list[:self.MAX_ELEMENTS]
+        else:
+            self._elements = order_elements_list
+        self.elements_number = len(self)
+        self.price_before_discount = self._calculate_price_before_discount()
+        self.total_price = self._calculate_total_price()
+
     def add_order_element(self, order_element: OrderElement):
         self._elements.append(order_element)
 
