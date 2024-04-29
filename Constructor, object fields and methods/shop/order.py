@@ -23,8 +23,8 @@ class Order:
         mark_line = "*" * 20
         client_details = f"Customer: {self.customer_name} {self.customer_surname}"
         elements_number = f"Order items: {len(self)}"
-        price_before_discount = f"Price: {self._calculate_price_before_discount():.2f}"
-        discount_value = f"Discount: -{self.calculate_discount_value():.2f}"
+        price_before_discount = f"Price: {self.price_before_discount:.2f}"
+        discount_value = f"Discount: -{self.discount_value:.2f}"
         final_price = f"Final price: {self.total_price:.2f}"
         products_details = f"Ordered Products:\n\n "
         for element in self._elements:
@@ -71,16 +71,18 @@ class Order:
 
     @property
     def total_price(self) -> float:
-        return self.discount_policy(self._calculate_price_before_discount())
+        return self.discount_policy(self.price_before_discount)
 
-    def _calculate_price_before_discount(self):
+    @property
+    def price_before_discount(self):
         total_price = 0
         for order_element in self._elements:
             total_price += order_element.get_order_element_price()
         return total_price
 
-    def calculate_discount_value(self):
-        return self._calculate_price_before_discount() - self.total_price
+    @property
+    def discount_value(self):
+        return self.price_before_discount - self.total_price
 
     def add_order_element(self, order_element: OrderElement):
         self._elements.append(order_element)
