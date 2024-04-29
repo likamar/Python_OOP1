@@ -1,4 +1,4 @@
-from shop.data_generator import generate_random_order, generate_order_elements
+from shop.data_generator import generate_random_order, generate_random_order_element
 from shop.discount_policy import DiscountPolicy
 
 if __name__ == "__main__":
@@ -13,8 +13,8 @@ if __name__ == "__main__":
     # print("Christmas order:\n", christmas_order)
 
     new_order = generate_random_order(number_of_products=9, discount_policy=DiscountPolicy.loyal_customer)
-    # print(new_order)
-    new_order.elements = generate_order_elements(11)
+    print(new_order)
+    new_order.add_order_element(generate_random_order_element(10))
     print(new_order)
 
     # for order_element in new_order.elements:

@@ -25,7 +25,7 @@ def generate_random_product(product_number: int) -> 'Product':
 
 def generate_random_order_element(element_number):
     quantity = random.randint(MIN_ORDER_ELEMENT_QUANTITY, MAX_ORDER_ELEMENT_QUANTITY)
-    product = generate_random_product(element_number + 1)
+    product = generate_random_product(element_number)
     return OrderElement(product, quantity)
 
 
@@ -33,7 +33,7 @@ def generate_order_elements(number_of_products=None):
     order_elements = []
     if number_of_products is None:
         number_of_products = random.randint(1, Order.MAX_ELEMENTS)
-    for element_number in range(0, number_of_products):
+    for element_number in range(1, number_of_products + 1):
         order_elements.append(generate_random_order_element(element_number))
     return order_elements
 
