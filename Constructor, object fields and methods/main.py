@@ -16,6 +16,3 @@ if __name__ == "__main__":
     print(new_order)
     new_order.add_order_element(generate_random_order_element(10))
     print(new_order)
-
-    # for order_element in new_order.elements:
-    #     print(order_element)

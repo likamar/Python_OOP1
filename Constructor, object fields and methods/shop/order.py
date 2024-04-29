@@ -18,7 +18,6 @@ class Order:
         if discount_policy is None:
             discount_policy = DiscountPolicy.default
         self.discount_policy = discount_policy
-        self.total_price = self._calculate_total_price()
 
     def __str__(self):
         mark_line = "*" * 20
@@ -69,11 +68,10 @@ class Order:
             self._elements = order_elements_list[:self.MAX_ELEMENTS]
         else:
             self._elements = order_elements_list
-        self.total_price = self._calculate_total_price()
 
-    def add_order_element(self, order_element: OrderElement):
-        self._elements.append(order_element)
-        self.total_price = self._calculate_total_price()
+    @property
+    def total_price(self) -> float:
+        return self.discount_policy(self._calculate_price_before_discount())
 
     def _calculate_price_before_discount(self):
         total_price = 0
@@ -81,17 +79,15 @@ class Order:
             total_price += order_element.get_order_element_price()
         return total_price
 
-    def _calculate_total_price(self) -> float:
-        return self.discount_policy(self._calculate_price_before_discount())
-
     def calculate_discount_value(self):
         return self._calculate_price_before_discount() - self.total_price
+
+    def add_order_element(self, order_element: OrderElement):
+        self._elements.append(order_element)
 
     def add_product(self, product: Product, quantity: int):
         if self.elements_number < Order.MAX_ELEMENTS:
             new_element = OrderElement(product, quantity)
             self._elements.append(new_element)
-            self.total_price = self._calculate_total_price()
-
         else:
             print("Maximum products limit reached!")
