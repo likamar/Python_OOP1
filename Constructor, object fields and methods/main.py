@@ -1,5 +1,6 @@
 from shop.data_generator import generate_random_order, generate_random_order_element
 from shop.discount_policy import DiscountPolicy
+from shop.expiring_product import ExpiringProduct
 
 if __name__ == "__main__":
 
@@ -16,3 +17,7 @@ if __name__ == "__main__":
     print(new_order)
     new_order.add_order_element(generate_random_order_element(10))
     print(new_order)
+
+    my_product = ExpiringProduct(name="Pepsi", production_year=2022, years_to_expire=3)
+    print(my_product)
+    print(my_product.does_expire(current_year=2024))
