@@ -82,7 +82,7 @@ class Order:
 
     @property
     def discount_value(self):
-        return self.price_before_discount - self.total_price
+        return self.price_before_discount - self.discount_policy(self.price_before_discount)
 
     def add_order_element(self, order_element: OrderElement):
         self._elements.append(order_element)
