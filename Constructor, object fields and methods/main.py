@@ -1,9 +1,10 @@
-from shop.data_generator import generate_random_order, generate_random_order_element
+from shop.data_generator import generate_random_order, generate_random_order_element, generate_random_product
 from shop.discount_policy import DiscountPolicy
 from shop.percentage_discount import PercentageDiscount
 from shop.absolute_discount import AbsoluteDiscount
 from shop.expiring_product import ExpiringProduct
 from shop.express_order import ExpressOrder
+from shop.order import Order
 from shop.product import Product
 from shop.order_element import OrderElement
 
@@ -32,3 +33,21 @@ if __name__ == "__main__":
     order_elements = [order_element]
     express_order = ExpressOrder(customer_name="Marcin", customer_surname="Lika", order_elements=order_elements, delivery_date="2024-05-06", discount_policy=PercentageDiscount(10))
     print(express_order)
+
+    order_1 = generate_random_order(number_of_products=4)
+    order_2 = generate_random_order(number_of_products=4)
+
+    print(order_1)
+    print(order_2)
+    print(order_1 == order_2)
+
+    order_2.add_product(generate_random_product(1), 2)
+    order_2.add_product(generate_random_product(1), 2)
+    order_2.add_product(generate_random_product(1), 2)
+    order_2.add_product(generate_random_product(1), 2)
+    order_2.add_product(generate_random_product(1), 2)
+    order_2.add_product(generate_random_product(1), 2)
+    order_2.add_product(generate_random_product(1), 2)
+
+    print(order_1)
+    print(order_2)

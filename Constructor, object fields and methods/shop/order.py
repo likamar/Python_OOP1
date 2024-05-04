@@ -41,22 +41,23 @@ class Order:
 
     def __len__(self):
         return len(self._elements)
+
     # TODO refactor this method
-    # def __eq__(self, other: 'Order'):
-    #     if self.__class__ != other.__class__:
-    #         return NotImplemented
-    #
-    #     if self.elements_number != other.elements_number:
-    #         return False
-    #
-    #     if self.customer_name != other.customer_name or self.customer_surname != other.customer_surname:
-    #         return False
-    #
-    #     for order_element in self._elements:
-    #         if order_element not in other._elements:
-    #             return False
-    #
-    #     return True
+    def __eq__(self, other: 'Order'):
+        if self.__class__ != other.__class__:
+            return NotImplemented
+
+        if len(self) != len(other):
+            return False
+
+        if self.customer_name != other.customer_name or self.customer_surname != other.customer_surname:
+            return False
+
+        for order_element in self._elements:
+            if order_element not in other._elements:
+                return False
+
+        return True
 
     @property
     def elements(self):
@@ -88,7 +89,7 @@ class Order:
         self._elements.append(order_element)
 
     def add_product(self, product: Product, quantity: int):
-        if len(self.elements) < Order.MAX_ELEMENTS:
+        if len(self) < Order.MAX_ELEMENTS:
             new_element = OrderElement(product, quantity)
             self._elements.append(new_element)
         else:
