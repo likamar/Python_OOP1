@@ -16,7 +16,7 @@ class Order:
         else:
             self._elements = order_elements
         if discount_policy is None:
-            discount_policy = DiscountPolicy.default
+            discount_policy = DiscountPolicy()
         self.discount_policy = discount_policy
 
     def __str__(self):
@@ -41,22 +41,22 @@ class Order:
 
     def __len__(self):
         return len(self._elements)
-
-    def __eq__(self, other: 'Order'):
-        if self.__class__ != other.__class__:
-            return NotImplemented
-
-        if self.elements_number != other.elements_number:
-            return False
-
-        if self.customer_name != other.customer_name or self.customer_surname != other.customer_surname:
-            return False
-
-        for order_element in self._elements:
-            if order_element not in other._elements:
-                return False
-
-        return True
+    # TODO refactor this method
+    # def __eq__(self, other: 'Order'):
+    #     if self.__class__ != other.__class__:
+    #         return NotImplemented
+    #
+    #     if self.elements_number != other.elements_number:
+    #         return False
+    #
+    #     if self.customer_name != other.customer_name or self.customer_surname != other.customer_surname:
+    #         return False
+    #
+    #     for order_element in self._elements:
+    #         if order_element not in other._elements:
+    #             return False
+    #
+    #     return True
 
     @property
     def elements(self):
@@ -71,24 +71,24 @@ class Order:
 
     @property
     def total_price(self) -> float:
-        return self.discount_policy(self.price_before_discount)
+        return self.discount_policy.apply_discount(self.price_before_discount)
 
     @property
     def price_before_discount(self):
-        total_price = 0
+        price_before_discount = 0
         for order_element in self._elements:
-            total_price += order_element.get_order_element_price()
-        return total_price
+            price_before_discount += order_element.get_order_element_price()
+        return price_before_discount
 
     @property
     def discount_value(self):
-        return self.price_before_discount - self.discount_policy(self.price_before_discount)
+        return self.price_before_discount - self.discount_policy.apply_discount(self.price_before_discount)
 
     def add_order_element(self, order_element: OrderElement):
         self._elements.append(order_element)
 
     def add_product(self, product: Product, quantity: int):
-        if self.elements_number < Order.MAX_ELEMENTS:
+        if len(self.elements) < Order.MAX_ELEMENTS:
             new_element = OrderElement(product, quantity)
             self._elements.append(new_element)
         else:

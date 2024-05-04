@@ -47,7 +47,7 @@ def generate_random_orders_sorted_by_price(number_of_orders):
     orders = []
     for _ in range(0, number_of_orders):
         order_elements_number = random.randint(MIN_ORDER_ELEMENT_QUANTITY, MAX_ORDER_ELEMENT_QUANTITY)
-        order = generate_random_order(order_elements_number, discount_policy=DiscountPolicy.christmas)
+        order = generate_random_order(order_elements_number)
         orders.append(order)
     orders.sort(key=lambda order_to_sort: order_to_sort.total_price)
     for order in orders:
