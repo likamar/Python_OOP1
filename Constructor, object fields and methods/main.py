@@ -28,7 +28,7 @@ if __name__ == "__main__":
     # print(my_product)
     # print(my_product.does_expire(current_year=2024))
 
-    product = Product(name="Samsung TV", category="Electronics", price=2999.99)
+    product = Product(name="Samsung TV", identifier=99, category="Electronics", price=2999.99)
     order_element = OrderElement(product, quantity=1)
     order_elements = [order_element]
     express_order = ExpressOrder(customer_name="Marcin", customer_surname="Lika", order_elements=order_elements, delivery_date="2024-05-06", discount_policy=PercentageDiscount(10))
