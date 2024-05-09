@@ -18,9 +18,10 @@ def generate_random_price():
 
 def generate_random_product(product_number: int) -> 'Product':
     random_name = "Product_" + str(product_number)
+    random_id = random.randint(1, 9999)
     random_category = "Category_" + str(product_number)
     random_price = generate_random_price()
-    return Product(random_name, random_category, random_price)
+    return Product(random_name, random_id, random_category, random_price)
 
 
 def generate_random_order_element(element_number):
