@@ -1,4 +1,5 @@
 from shop.data_generator import generate_random_order, generate_random_order_element, generate_random_product
+from shop.data_generator import generate_order_elements
 from shop.discount_policy import DiscountPolicy
 from shop.percentage_discount import PercentageDiscount
 from shop.absolute_discount import AbsoluteDiscount
@@ -51,3 +52,11 @@ if __name__ == "__main__":
 
     print(order_1)
     print(order_2)
+
+    print("List comprehensions/ex_1")
+
+    order_elements = generate_order_elements(number_of_products=10)
+    print(order_elements)
+    order_elems_dict = {order_element.product.identifier: order_element.product for order_element in order_elements}
+    print(type(order_elems_dict))
+    print(order_elems_dict)
