@@ -9,6 +9,8 @@ MIN_ORDER_ELEMENT_QUANTITY = 1
 MAX_ORDER_ELEMENT_QUANTITY = 10
 MIN_PRODUCT_PRICE = 0.99
 MAX_PRODUCT_PRICE = 99.99
+MIN_IDENTIFIER = 1
+MAX_IDENTIFIER = 9999
 
 
 def generate_random_price():
@@ -18,7 +20,7 @@ def generate_random_price():
 
 def generate_random_product(product_number: int) -> 'Product':
     random_name = "Product_" + str(product_number)
-    random_id = random.randint(1, 9999)
+    random_id = random.randint(MIN_IDENTIFIER, MAX_IDENTIFIER)
     random_category = "Category_" + str(product_number)
     random_price = generate_random_price()
     return Product(random_name, random_id, random_category, random_price)
