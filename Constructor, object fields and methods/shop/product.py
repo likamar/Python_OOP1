@@ -1,7 +1,7 @@
 class Product:
     def __init__(self, name, identifier, category='None', price: float = 0):
         self.name = name
-        self.identifier = Product.format_product_id(identifier)
+        self.identifier = identifier
         self.category = category
         self.price = price
 
