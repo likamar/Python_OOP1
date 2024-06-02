@@ -8,6 +8,7 @@ from shop.express_order import ExpressOrder
 from shop.order import Order
 from shop.product import Product
 from shop.order_element import OrderElement
+import random
 
 if __name__ == "__main__":
 
@@ -53,27 +54,66 @@ if __name__ == "__main__":
     print(order_1)
     print(order_2)
 
-    print("List comprehension/ex_1")
-    # Zadanie 1
-    # Użyj dict comprehensions, aby zamienić listę pozycji zamówienia w słownik, gdzie kluczem będzie
-    # identyfikator produktu z danej pozycji, a wartością będzie dany obiekt klasy Product.
+    # print("List comprehension/ex_1")
+    # # Zadanie 1
+    # # Użyj dict comprehensions, aby zamienić listę pozycji zamówienia w słownik, gdzie kluczem będzie
+    # # identyfikator produktu z danej pozycji, a wartością będzie dany obiekt klasy Product.
+    #
+    # order_elements = generate_order_elements(number_of_products=10)
+    # order_elems_dict = {order_element.product.identifier: order_element.product for order_element in order_elements}
+    # print(type(order_elems_dict))
+    # print(order_elems_dict)
+    #
+    # print("List comprehension/ex_2")
+    # # Zmodyfikuj rozwiązanie poprzedniego zadania.
+    #
+    # # Skorzystaj z dict comprehensions, aby na podstawie słownika z produktami stworzyć nowy,
+    # # w którym każdy produkt będzie pod kluczem o 1 większym.
+    # # I tak produkt, który znajdował się w oryginalnym słowniku pod kluczem 15 trafi w nowym pod klucz 16, itd.
+    # # Następnie skorzystaj z metody update aby “połączyć” oba słowniki.
+    #
+    # incremented_order_elems_dict = {identifier + 1: product for identifier, product in order_elems_dict.items()}
+    # print(type(incremented_order_elems_dict))
+    # print(incremented_order_elems_dict)
+    #
+    # order_elems_dict.update(incremented_order_elems_dict)
+    # print(order_elems_dict)
 
-    order_elements = generate_order_elements(number_of_products=10)
-    order_elems_dict = {order_element.product.identifier: order_element.product for order_element in order_elements}
-    print(type(order_elems_dict))
-    print(order_elems_dict)
+    def products_delivery():
+        available_products = [
+            "bread",
+            "buns",
+            "milk",
+            "eggs",
+            "butter",
+            "cheese",
+            "ham",
+            "sausages",
+            "chocolate",
+            "water"
+        ]
+        return [available_products[random.randint(0, 9)] for _ in range(5)]
 
-    print("List comprehension/ex_2")
-    # Zmodyfikuj rozwiązanie poprzedniego zadania.
 
-    # Skorzystaj z dict comprehensions, aby na podstawie słownika z produktami stworzyć nowy,
-    # w którym każdy produkt będzie pod kluczem o 1 większym.
-    # I tak produkt, który znajdował się w oryginalnym słowniku pod kluczem 15 trafi w nowym pod klucz 16, itd.
-    # Następnie skorzystaj z metody update aby “połączyć” oba słowniki.
+    needed_products = [
+        "bread",
+        "buns",
+        "milk",
+        "eggs",
+        "butter",
+        "cheese",
+        "ham",
+        "sausages",
+        "chocolate",
+        "water"
+    ]
 
-    incremented_order_elems_dict = {identifier + 1: product for identifier, product in order_elems_dict.items()}
-    print(type(incremented_order_elems_dict))
-    print(incremented_order_elems_dict)
+    received_products = []
 
-    order_elems_dict.update(incremented_order_elems_dict)
-    print(order_elems_dict)
+    while not set(needed_products) == set(received_products):
+        new_products = products_delivery()
+        received_products += new_products
+        print(f"Received products: {received_products}")
+        missing_products = set(needed_products).difference(set(received_products))
+        print(f"Waiting for delivery: {missing_products}")
+
